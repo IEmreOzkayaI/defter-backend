@@ -11,7 +11,25 @@ async function bootstrap() {
   CommonUtil.validateEnv(ENV_VAR, ENV_SCHEMA);
   const app = await NestFactory.create(AppModule, { bufferLogs: false });
   app.enableShutdownHooks();
-  app.enableCors();
+
+  const rawCors = ENV_VAR.CORS_ORIGIN?.trim();
+  const corsOrigin: boolean | string[] =
+    rawCors && rawCors.length > 0
+      ? (() => {
+          const list = rawCors.split(',').map((o) => o.trim()).filter(Boolean);
+          return list.length > 0 ? list : true;
+        })()
+      : true;
+
+  app.enableCors({
+    origin: corsOrigin,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin', 'X-Requested-With'],
+    exposedHeaders: ['Content-Length', 'Content-Type'],
+    credentials: false,
+    optionsSuccessStatus: 204,
+    maxAge: 86_400,
+  });
 
   /* !============================== Global Settings ==============================! */
   app.useGlobalPipes(

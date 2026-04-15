@@ -21,6 +21,9 @@ export const ENV_VAR = {
   ADMIN_USERNAME: process.env.ADMIN_USERNAME,
   ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
   ADMIN_JWT_SECRET: process.env.ADMIN_JWT_SECRET,
+
+  /** Virgülle ayrılmış origin; boşsa CORS `origin: true` (gelen Origin yansıtılır). */
+  CORS_ORIGIN: process.env.CORS_ORIGIN,
 };
 
 export const ENV_SCHEMA = {
@@ -42,4 +45,6 @@ export const ENV_SCHEMA = {
   ADMIN_USERNAME: { required: true },
   ADMIN_PASSWORD: { required: true },
   ADMIN_JWT_SECRET: { required: true },
+
+  CORS_ORIGIN: { required: false },
 } as const;
