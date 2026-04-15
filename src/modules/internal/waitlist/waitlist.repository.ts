@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-
 import { ENV_VAR } from 'src/common/env.config';
 
 import { CreateWaitlistRequestBodyDTOV1 } from './dto/create-waitlist-request.dto';
@@ -26,7 +25,10 @@ export class WaitlistRepositoryV1 {
   }
 
   async updateByIdOrFail(id: string, dto: UpdateWaitlistRequestBodyDTOV1): Promise<Waitlist> {
-    const updated = await this.model.findByIdAndUpdate(id, { $set: dto }, { ...this.queryOptions(), new: true }).lean().exec();
+    const updated = await this.model
+      .findByIdAndUpdate(id, { $set: dto }, { ...this.queryOptions(), new: true })
+      .lean()
+      .exec();
     if (!updated) throw new NotFoundException('Waitlist item not found');
     return updated;
   }

@@ -1,9 +1,9 @@
 import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TransactionManager } from '@token-org/tokenx-energy-util/dist/databases/mongo';
 
 import { DatabaseConfig } from './database.config';
 import { DATABASE_ENTITIES } from './database.entities';
+import { TransactionManager } from 'src/common/databases/mongo';
 
 @Global()
 @Module({

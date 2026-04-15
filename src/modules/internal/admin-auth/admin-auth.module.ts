@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-
 import { ENV_VAR } from 'src/common/env.config';
 
 import { AdminAuthControllerV1 } from './admin-auth.controller';
