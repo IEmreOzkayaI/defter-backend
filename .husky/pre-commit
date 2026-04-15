@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running linter..."
+pnpm lint || exit 1
+
+echo "✅ Pre-commit checks passed!"
+
+# Run integration tests
+echo -e "${YELLOW}🧪 Running integration tests...${NC}"
+echo
+pnpm test:integration || {
+  echo -e "${RED}❌ Integration tests failed. Commit aborted.${NC}"
+  echo
+  echo -e "Please fix the failing tests before committing."
+  echo
+  abort
+}
+echo -e "${GREEN}✅ Integration tests passed!${NC}"
+echo

@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "Node",
+      "request": "launch",
+      "restart": true,
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceRoot}",
+      "args": ["run", "start:dev"],
+      "type": "node"
+    },
+    {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "Test-Integration",
+      "request": "launch",
+      "restart": true,
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceRoot}",
+      "args": ["run", "test:integration"],
+      "type": "node"
+    },
+    {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "Test-Integration-Single",
+      "request": "launch",
+      "restart": true,
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceRoot}",
+      "args": ["run", "test:integration", "--", "test/modules/external-checkout/v1/admin/test/send-sms-external-checkout.test.ts"],
+      "type": "node"
+    }
+  ]
+}
