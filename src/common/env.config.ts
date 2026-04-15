@@ -9,6 +9,8 @@ export const ENV_VAR = {
   MONGO_SSLCA: process.env.MONGO_SSLCA,
   MONGO_DATABASE: process.env.MONGO_DATABASE,
   MONGO_URL: process.env.MONGO_URL,
+  /** SCRAM için kullanıcının tanımlı olduğu DB (Railway/init root → genelde `admin`). */
+  MONGO_AUTH_SOURCE: process.env.MONGO_AUTH_SOURCE,
 
   MONGO_CONNECT_TIMEOUT_MS: process.env.MONGO_CONNECT_TIMEOUT_MS ?? '3000',
   MONGO_SOCKET_TIMEOUT_MS: process.env.MONGO_SOCKET_TIMEOUT_MS ?? '10000',
@@ -29,6 +31,7 @@ export const ENV_SCHEMA = {
   MONGO_URL: { required: true },
   MONGO_DATABASE: { required: true },
   MONGO_SSLCA: { required: false },
+  MONGO_AUTH_SOURCE: { required: false },
 
   MONGO_CONNECT_TIMEOUT_MS: { required: true },
   MONGO_SOCKET_TIMEOUT_MS: { required: true },
