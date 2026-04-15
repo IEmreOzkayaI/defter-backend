@@ -11,6 +11,7 @@ async function bootstrap() {
   CommonUtil.validateEnv(ENV_VAR, ENV_SCHEMA);
   const app = await NestFactory.create(AppModule, { bufferLogs: false });
   app.enableShutdownHooks();
+  app.enableCors();
 
   /* !============================== Global Settings ==============================! */
   app.useGlobalPipes(
